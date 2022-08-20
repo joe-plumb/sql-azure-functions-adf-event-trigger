@@ -1,0 +1,68 @@
+{
+	"name": "EventTriggeredPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@array(pipeline().parameters.data)",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Set variable",
+							"type": "SetVariable",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "JobStepName",
+								"value": {
+									"value": "@item().JobStepName",
+									"type": "Expression"
+								}
+							}
+						},
+						{
+							"name": "Set variable1",
+							"type": "SetVariable",
+							"dependsOn": [
+								{
+									"activity": "Set variable",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"variableName": "JobMetadata",
+								"value": {
+									"value": "@item().JobMetadata",
+									"type": "Expression"
+								}
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"data": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"JobStepName": {
+				"type": "String"
+			},
+			"JobMetadata": {
+				"type": "String"
+			}
+		},
+		"annotations": []
+	}
+}

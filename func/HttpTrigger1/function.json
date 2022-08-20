@@ -1,0 +1,41 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+          "get"
+      ]
+  },
+  {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+  },
+  {
+      "name": "jobItems",
+      "type": "sql",
+      "direction": "in",
+      "commandText": "select [JobId], [JobStepId],[JobName],[JobStepName],[JobStepType],[JobStepStatus],[JobMetadata] from dbo.ToDo where [JobStepType] = 6 and [JobStepStatus] = 'Started' ",
+      "commandType": "Text",
+      "connectionStringSetting": "SqlConnectionString"
+  },
+  {
+    "name": "jobItemsUpdate",
+    "type": "sql",
+    "direction": "out",
+    "commandText": "dbo.ToDo",
+    "connectionStringSetting": "SqlConnectionString"
+  },
+  {
+    "type": "eventGrid",
+    "name": "outputEvent",
+    "topicEndpointUri": "MyEventGridTopicUriSetting",
+    "topicKeySetting": "MyEventGridTopicKeySetting",
+    "direction": "out"
+  }
+  ]
+}

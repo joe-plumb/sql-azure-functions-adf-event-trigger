@@ -1,0 +1,3 @@
+insert into dbo.ToDo ([JobId], [JobStepId],[JobName],[JobStepName],[JobStepType],[JobStepStatus],[JobMetadata]) VALUES (3012, 301201, 'Sample Job', 'First step of job', 6, 'Started', '{"jobmetadata":"examplepayload"}');
+
+--insert into dbo.ToDo ([JobId], [JobStepId],[JobName],[JobStepName],[JobStepType],[JobStepStatus],[JobMetadata]) VALUES (3012, 301202, 'Sample Job', 'Second step of job', 6, 'Started', '{"jobmetadata":"examplepayload2"}');

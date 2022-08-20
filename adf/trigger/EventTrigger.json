@@ -1,0 +1,27 @@
+{
+	"name": "EventTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EventTriggeredPipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"data": "@triggerBody().event.data"
+				}
+			}
+		],
+		"type": "CustomEventsTrigger",
+		"typeProperties": {
+			"subjectEndsWith": "",
+			"subjectBeginsWith": "adf",
+			"scope": "<INSERT EVENT GRID RESOURCE ID HERE e.g. /subscriptions/$SUBSCRIPTIONID/resourceGroups/$RESOURCEGROUPNAME/providers/Microsoft.EventGrid/topics/$EVENTGRIDTOPICNAME>",
+			"events": [
+				"adf-event-1"
+			]
+		}
+	}
+}
